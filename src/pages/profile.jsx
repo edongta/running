@@ -3,7 +3,7 @@ import React from 'react';
 // @ts-ignore;
 import { Tabs, TabsContent, TabsList, TabsTrigger, Card, CardHeader, CardTitle, CardContent, Avatar, AvatarImage, AvatarFallback, Progress } from '@/components/ui';
 // @ts-ignore;
-import { User, Activity, Users, Settings, HelpCircle, ChevronRight } from 'lucide-react';
+import { User, Activity, Users, Settings, HelpCircle, ChevronRight, Watch } from 'lucide-react';
 
 export default function ProfilePage(props) {
   const {
@@ -35,6 +35,23 @@ export default function ProfilePage(props) {
     name: '晨跑小分队',
     members: 15
   }];
+
+  // 设备绑定状态
+  const [devices, setDevices] = React.useState([{
+    id: 1,
+    name: '高驰 Coros',
+    connected: false
+  }, {
+    id: 2,
+    name: '佳明 Garmin',
+    connected: false
+  }]);
+  const handleConnectDevice = deviceId => {
+    setDevices(devices.map(device => device.id === deviceId ? {
+      ...device,
+      connected: !device.connected
+    } : device));
+  };
   return <div className="flex flex-col h-screen">
       {/* 个人信息卡片 */}
       <Card className="m-4">
@@ -128,6 +145,26 @@ export default function ProfilePage(props) {
                   <ChevronRight className="text-gray-400" />
                 </div>
               </CardHeader>
+            </Card>
+            {/* 新增设备绑定选项 */}
+            <Card>
+              <CardHeader className="p-4">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center">
+                    <Watch className="w-5 h-5 mr-2 text-blue-500" />
+                    <span>设备绑定</span>
+                  </div>
+                  <ChevronRight className="text-gray-400" />
+                </div>
+              </CardHeader>
+              <CardContent className="pt-0">
+                {devices.map(device => <div key={device.id} className="flex items-center justify-between py-2">
+                    <span>{device.name}</span>
+                    <button onClick={() => handleConnectDevice(device.id)} className={`px-3 py-1 rounded-full text-sm ${device.connected ? 'bg-green-100 text-green-800' : 'bg-blue-100 text-blue-800'}`}>
+                      {device.connected ? '已连接' : '连接'}
+                    </button>
+                  </div>)}
+              </CardContent>
             </Card>
           </div>
         </TabsContent>
