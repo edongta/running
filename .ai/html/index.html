@@ -1,0 +1,256 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>跑友圈 - 首页</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .tab-active {
+            border-bottom: 3px solid #3b82f6;
+            color: #3b82f6;
+            font-weight: 600;
+        }
+        .run-card {
+            transition: all 0.3s ease;
+        }
+        .run-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans">
+    <div class="max-w-md mx-auto bg-white min-h-screen">
+        <!-- 顶部导航 -->
+        <header class="sticky top-0 z-10 bg-white shadow-sm">
+            <div class="px-4 py-3 flex justify-between items-center">
+                <h1 class="text-xl font-bold text-blue-500">跑友圈</h1>
+                <div class="flex space-x-4">
+                    <button class="text-gray-600">
+                        <i class="fas fa-search"></i>
+                    </button>
+                    <button class="text-gray-600">
+                        <i class="fas fa-bell"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- 标签页 -->
+            <div class="flex border-b">
+                <button id="stats-tab" class="flex-1 py-3 text-center tab-active">
+                    <i class="fas fa-chart-line mr-1"></i>数据
+                </button>
+                <button id="groups-tab" class="flex-1 py-3 text-center text-gray-500">
+                    <i class="fas fa-users mr-1"></i>跑团
+                </button>
+                <button id="ranking-tab" class="flex-1 py-3 text-center text-gray-500">
+                    <i class="fas fa-trophy mr-1"></i>排行
+                </button>
+            </div>
+        </header>
+
+        <!-- 主内容区 -->
+        <main class="pb-20">
+            <!-- 个人跑步数据 -->
+            <div id="stats-content" class="p-4">
+                <div class="mb-6">
+                    <h2 class="text-lg font-semibold mb-3">本周跑步数据</h2>
+                    <div class="grid grid-cols-3 gap-4">
+                        <div class="bg-blue-50 rounded-lg p-4 text-center">
+                            <p class="text-gray-500 text-sm">里程</p>
+                            <p class="text-2xl font-bold">12.5<span class="text-sm">km</span></p>
+                        </div>
+                        <div class="bg-green-50 rounded-lg p-4 text-center">
+                            <p class="text-gray-500 text-sm">配速</p>
+                            <p class="text-2xl font-bold">5'42"<span class="text-sm">/km</span></p>
+                        </div>
+                        <div class="bg-purple-50 rounded-lg p-4 text-center">
+                            <p class="text-gray-500 text-sm">时长</p>
+                            <p class="text-2xl font-bold">1h12m</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-6">
+                    <div class="flex justify-between items-center mb-3">
+                        <h2 class="text-lg font-semibold">最近跑步记录</h2>
+                        <button class="text-blue-500 text-sm">查看全部</button>
+                    </div>
+                    <div class="space-y-3">
+                        <div class="run-card bg-white rounded-lg shadow p-4 border border-gray-100">
+                            <div class="flex justify-between">
+                                <div>
+                                    <p class="font-medium">晨跑公园</p>
+                                    <p class="text-gray-500 text-sm">8月14日 06:30</p>
+                                </div>
+                                <div class="text-right">
+                                    <p class="font-medium">5.2<span class="text-sm">km</span></p>
+                                    <p class="text-gray-500 text-sm">5'38"/km</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="run-card bg-white rounded-lg shadow p-4 border border-gray-100">
+                            <div class="flex justify-between">
+                                <div>
+                                    <p class="font-medium">夜跑河边</p>
+                                    <p class="text-gray-500 text-sm">8月12日 19:45</p>
+                                </div>
+                                <div class="text-right">
+                                    <p class="font-medium">7.3<span class="text-sm">km</span></p>
+                                    <p class="text-gray-500 text-sm">5'45"/km</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 加入的跑团 -->
+            <div id="groups-content" class="p-4 hidden">
+                <div class="mb-6">
+                    <div class="flex justify-between items-center mb-3">
+                        <h2 class="text-lg font-semibold">我的跑团</h2>
+                        <button class="text-blue-500 text-sm">创建跑团</button>
+                    </div>
+                    <div class="space-y-3">
+                        <div class="run-card bg-white rounded-lg shadow p-4 border border-gray-100">
+                            <div class="flex items-center">
+                                <img src="https://images.unsplash.com/photo-1517649763962-0c623066013b?w=500" class="w-12 h-12 rounded-full object-cover mr-3">
+                                <div class="flex-1">
+                                    <p class="font-medium">城市跑者联盟</p>
+                                    <p class="text-gray-500 text-sm">成员 128人 · 本周活动 3场</p>
+                                </div>
+                                <i class="fas fa-chevron-right text-gray-400"></i>
+                            </div>
+                        </div>
+                        <div class="run-card bg-white rounded-lg shadow p-4 border border-gray-100">
+                            <div class="flex items-center">
+                                <img src="https://images.unsplash.com/photo-1543351611-58f69d7c1781?w=500" class="w-12 h-12 rounded-full object-cover mr-3">
+                                <div class="flex-1">
+                                    <p class="font-medium">周末马拉松训练营</p>
+                                    <p class="text-gray-500 text-sm">成员 56人 · 本周活动 1场</p>
+                                </div>
+                                <i class="fas fa-chevron-right text-gray-400"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 最新排行 -->
+            <div id="ranking-content" class="p-4 hidden">
+                <div class="mb-6">
+                    <div class="flex justify-between items-center mb-3">
+                        <h2 class="text-lg font-semibold">本周排行榜</h2>
+                        <div class="flex space-x-2">
+                            <button class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">周榜</button>
+                            <button class="px-3 py-1 bg-gray-100 text-gray-600 rounded-full text-sm">月榜</button>
+                        </div>
+                    </div>
+                    <div class="space-y-3">
+                        <div class="run-card bg-white rounded-lg shadow p-4 border border-gray-100">
+                            <div class="flex items-center">
+                                <div class="w-8 h-8 rounded-full bg-yellow-400 flex items-center justify-center text-white font-bold mr-3">1</div>
+                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500" class="w-10 h-10 rounded-full object-cover mr-3">
+                                <div class="flex-1">
+                                    <p class="font-medium">张伟</p>
+                                    <p class="text-gray-500 text-sm">累计 42.5km</p>
+                                </div>
+                                <div class="text-right">
+                                    <p class="font-medium text-blue-500">+5.2km</p>
+                                    <p class="text-gray-500 text-sm">5'32"/km</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="run-card bg-white rounded-lg shadow p-4 border border-gray-100">
+                            <div class="flex items-center">
+                                <div class="w-8 h-8 rounded-full bg-gray-300 flex items-center justify-center text-white font-bold mr-3">2</div>
+                                <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=500" class="w-10 h-10 rounded-full object-cover mr-3">
+                                <div class="flex-1">
+                                    <p class="font-medium">李娜</p>
+                                    <p class="text-gray-500 text-sm">累计 38.7km</p>
+                                </div>
+                                <div class="text-right">
+                                    <p class="font-medium text-blue-500">+4.8km</p>
+                                    <p class="text-gray-500 text-sm">5'45"/km</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="run-card bg-white rounded-lg shadow p-4 border border-gray-100">
+                            <div class="flex items-center">
+                                <div class="w-8 h-8 rounded-full bg-amber-700 flex items-center justify-center text-white font-bold mr-3">3</div>
+                                <img src="https://images.unsplash.com/photo-1544725176-7c40e5a71c5e?w=500" class="w-10 h-10 rounded-full object-cover mr-3">
+                                <div class="flex-1">
+                                    <p class="font-medium">王强</p>
+                                    <p class="text-gray-500 text-sm">累计 36.2km</p>
+                                </div>
+                                <div class="text-right">
+                                    <p class="font-medium text-blue-500">+4.5km</p>
+                                    <p class="text-gray-500 text-sm">5'28"/km</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- 底部导航 -->
+        <nav class="fixed bottom-0 w-full max-w-md bg-white border-t border-gray-200">
+            <div class="flex justify-around py-3">
+                <button class="text-blue-500 flex flex-col items-center">
+                    <i class="fas fa-home text-xl"></i>
+                    <span class="text-xs mt-1">首页</span>
+                </button>
+                <button class="text-gray-500 flex flex-col items-center">
+                    <i class="fas fa-running text-xl"></i>
+                    <span class="text-xs mt-1">运动</span>
+                </button>
+                <button class="text-gray-500 flex flex-col items-center">
+                    <i class="fas fa-plus-circle text-xl bg-blue-500 text-white rounded-full p-1"></i>
+                </button>
+                <button class="text-gray-500 flex flex-col items-center">
+                    <i class="fas fa-comments text-xl"></i>
+                    <span class="text-xs mt-1">消息</span>
+                </button>
+                <button class="text-gray-500 flex flex-col items-center">
+                    <i class="fas fa-user text-xl"></i>
+                    <span class="text-xs mt-1">我的</span>
+                </button>
+            </div>
+        </nav>
+    </div>
+
+    <script>
+        // 标签页切换
+        const tabs = ['stats', 'groups', 'ranking'];
+        tabs.forEach(tab => {
+            const tabEl = document.getElementById(`${tab}-tab`);
+            const contentEl = document.getElementById(`${tab}-content`);
+            
+            tabEl.addEventListener('click', () => {
+                // 更新标签样式
+                tabs.forEach(t => {
+                    document.getElementById(`${t}-tab`).classList.remove('tab-active');
+                    document.getElementById(`${t}-tab`).classList.add('text-gray-500');
+                    document.getElementById(`${t}-content`).classList.add('hidden');
+                });
+                
+                tabEl.classList.add('tab-active');
+                tabEl.classList.remove('text-gray-500');
+                contentEl.classList.remove('hidden');
+            });
+        });
+
+        // 模拟数据加载
+        document.addEventListener('DOMContentLoaded', () => {
+            // 这里可以添加数据加载逻辑
+            console.log('页面加载完成');
+        });
+    </script>
+</body>
+</html>
+  
